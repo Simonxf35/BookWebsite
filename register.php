@@ -5,13 +5,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $middleName = $_POST["middleName"];
     $LastName = $_POST["LastName"];
     $userName = $_POST["userName"];
-
-    $username = $_POST["username"];
     $email = $_POST["emailaddress"];
     $comfirmEmail = $_POST["comfirmEmail"];
     $password = $_POST["password"];
-    
-    $comfirmEmail = $_POST["comfirmEmail"];
     
 
     // Validate password
