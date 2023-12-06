@@ -4,7 +4,7 @@ CREATE TABLE Users (
     lastName VARCHAR(100) NOT NULL,
     id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(255) UNIQUE NOT NULL,
-    EmailAddress VARCHAR(50) NOT NULL,
+    emailAddress VARCHAR(50) NOT NULL,
     comfirmEmail VARCHAR(50) NOT NULL,
     phone_number INT(50) NULL,
     user_password VARCHAR(100) NOT NULL,
