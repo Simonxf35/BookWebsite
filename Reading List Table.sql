@@ -1,0 +1,9 @@
+CREATE TABLE ReadingList (
+    ReadingListID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT NOT NULL,
+    BookID INT NOT NULL,
+    ChapterID INT,
+    CONSTRAINT FK_UserID_ReadingList FOREIGN KEY (UserID) REFERENCES Users(UserID),
+    CONSTRAINT FK_BookID_ReadingList FOREIGN KEY (BookID) REFERENCES Books(BookID),
+    CONSTRAINT FK_ChapterID_ReadingList FOREIGN KEY (ChapterID) REFERENCES Chapters(ChapterID)
+);
