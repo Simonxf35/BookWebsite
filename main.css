@@ -1,4 +1,12 @@
+:root{
+    --primary-color--: #2c3855;
+}   --primary-color-Dark:  ;
+    max-width: 1200px;
+    --primary_text-color--: #fff;
+    --secondary_text-color--: #2c3855;
+
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
