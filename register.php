@@ -1,9 +1,18 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Collect form data
+    $FirstName = $_POST["FirstName"];
+    $middleName = $_POST["middleName"];
+    $LastName = $_POST["LastName"];
+    $userName = $_POST["userName"];
+
     $username = $_POST["username"];
-    $email = $_POST["email"];
+    $email = $_POST["emailaddress"];
+    $comfirmEmail = $_POST["comfirmEmail"];
     $password = $_POST["password"];
+    
+    $comfirmEmail = $_POST["comfirmEmail"];
+    
 
     // Validate password
     if (strlen($password) < 8) {
