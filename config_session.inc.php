@@ -9,18 +9,19 @@ session_set_cookie_params([
     'secure' => true,
     'httponly' => true,
 ]);
-// 
+// starts the session and checks for expired sessions and regenerates in if true
+function session_regenerate_id (){
+    session_regenerate_id();
+        $_SESSION["last_regeneration"] = time(); 
+}
 session_start();
 
-if (!isset($_SESSION["last_regeneration")){
+if (!isset($_SESSION["last_regeneration"])){
     session_regenerate_id();
-    $-SESSION["last_regeneration"] = time();
 } else{
     $interval = 60 * 30;
     if (time() - $-SESSION["last_regeneration"] >= $interval){
         session_regenerate_id();
-        $-SESSION["last_regeneration"] = time();
-
     }
 }
 
