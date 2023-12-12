@@ -11,6 +11,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $confirmEmail = $_POST["confirmEmail"];
         $password = $_POST["password"];
 
+        // linking the db.php file to the signup page
+        try{
+            require_once "";
+
+        } catch(PDOException $e){
+            die("query failed: " . $e->getMessage());
+        }
+    } else {
+        header("index.php");
+        die();
+
         // Validate password
         if (strlen($password) < 8) {
             die("Password must be at least 8 characters long.");
