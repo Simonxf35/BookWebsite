@@ -3,17 +3,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // For sign-up
     if (isset($_POST["signup"])) {
         // Collect form data
-        $firstName = $_POST["FirstName"];
-        $middleName = $_POST["middleName"];
-        $lastName = $_POST["LastName"];
-        $userName = $_POST["userName"];
+        $firstname = $_POST["FirstName"];
+        $middlename = $_POST["middleName"];
+        $lastname = $_POST["LastName"];
+        $usermame = $_POST["username"];
         $email = $_POST["emailaddress"];
-        $confirmEmail = $_POST["confirmEmail"];
+        $confirmemail = $_POST["confirmemail"];
         $password = $_POST["password"];
 
         // linking the db.php file to the signup page
         try{
             require_once "";
+            require_once "register_model.inc.php";
+            require_once "register_contra.inc.php";
+
+            // Error Handling Code 
+            $errors = [];
+            if (is_input_empty($username, $password, $email)){
+                $errors["empty_input"] = "Fill in all fields!";
+            }
+            if(is_input_invalid($email)){
+                $errors["invalid_email"] = "invalid email used!";
+            }
+            if(is_username_taken($pdo, $usermame)){
+                $errors["username_taken"] = "Username already taken!";
+            }
+            if(is_email_registered($pdo, $email)){
+                $errors["email_used"] = "Email already registered";
+            }
+
+            require_once "config_session.inc.php";
+
+            if ($errors){
+                $_SESSION["error_register"] = $errors;
+                header("index.php");
+            }
+
 
         } catch(PDOException $e){
             die("query failed: " . $e->getMessage());
