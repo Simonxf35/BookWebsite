@@ -39,6 +39,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("index.php");
             }
 
+            create_users( $pdo, $password, $username, $email);
+
+            header("index.phpsignup=success?");
+        die();
+
+        $password = null;
+        $stmt = null;
 
         } catch(PDOException $e){
             die("query failed: " . $e->getMessage());

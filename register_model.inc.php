@@ -20,3 +20,20 @@ function is_email_registered(object $pdo, string $email){
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     return $result;
 }
+
+function set_user(object $pdo, string $password, string $username, string $email): {
+    $query = "INSERT INTO users (username, email, password) VALUES
+    (:username, :$password , :$username);";
+    $stmt = $pdo->prepare($query);
+
+    $options = [
+        "cost" => 12
+    ];
+    $hashedpassword = password_hash($password, $PASSWORD_BCRPT, $options);
+
+
+    $stmt ->bindParam(":$username", $username);
+    $stmt ->bindParam(":password", $password);
+    $stmt ->bindParam(":email", $email);
+    $stmt->execute();
+}
