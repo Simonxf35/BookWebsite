@@ -36,7 +36,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($errors){
                 $_SESSION["error_register"] = $errors;
+                $register_Data = [
+                    "username" => $usermame,
+                    "email" => $email,
+                    
+                ]
+                $_SESSION["register_data"] = $register_Data;
+
                 header("index.php");
+                die();
             }
 
             create_users( $pdo, $password, $username, $email);
