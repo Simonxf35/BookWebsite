@@ -1,149 +1,59 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Include necessary files
+    require_once "db.php";  // Update with your actual file name
+    require_once "register_model.inc.php";
+    require_once "register_contra.inc.php";
+    require_once "config_session.inc.php";
+
     // For sign-up
     if (isset($_POST["signup"])) {
-        // Collect form data
-        $firstname = $_POST["FirstName"];
-        $middlename = $_POST["middleName"];
-        $lastname = $_POST["LastName"];
-        $usermame = $_POST["username"];
-        $email = $_POST["emailaddress"];
-        $confirmemail = $_POST["confirmemail"];
+        // Collect form data and sanitize
+        $username = trim($_POST["username"]);
+        $email = trim($_POST["emailaddress"]);
         $password = $_POST["password"];
 
-        // linking the db.php file to the signup page
-        try{
-            require_once "";
-            require_once "register_model.inc.php";
-            require_once "register_contra.inc.php";
-
-            // Error Handling Code 
-            $errors = [];
-            if (is_input_empty($username, $password, $email)){
-                $errors["empty_input"] = "Fill in all fields!";
-            }
-            if(is_input_invalid($email)){
-                $errors["invalid_email"] = "invalid email used!";
-            }
-            if(is_username_taken($pdo, $usermame)){
-                $errors["username_taken"] = "Username already taken!";
-            }
-            if(is_email_registered($pdo, $email)){
-                $errors["email_used"] = "Email already registered";
-            }
-
-            require_once "config_session.inc.php";
-
-            if ($errors){
-                $_SESSION["error_register"] = $errors;
-                $register_Data = [
-                    "username" => $usermame,
-                    "email" => $email,
-                    
-                ]
-                $_SESSION["register_data"] = $register_Data;
-
-                header("index.php");
-                die();
-            }
-
-            create_users( $pdo, $password, $username, $email);
-
-            header("index.phpsignup=success?");
-        die();
-
-            $newSessionId = session_create_id();
-            $sessionId = $sessionId . "_" . $result["id"]; 
-            $session_Id = ($sessionId);
-
-            $_SESSION["user_id"] = $result["id"];
-            $_SESSION["user_username"] = htmlspecialchars($result["username"]);
-
-            $_SESSION["last_regeneration"] = time();
-
-            header("Location: http/register.php?login-success")
-            $password = null;
-            $stmt = null;
-
-        } catch(PDOException $e){
-            die("query failed: " . $e->getMessage());
+        // Error Handling Code 
+        $errors = [];
+        if (empty($username) || empty($password) || empty($email)) {
+            $errors["empty_input"] = "Fill in all fields!";
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors["invalid_email"] = "Invalid email used!";
+        } elseif (is_username_taken($pdo, $username)) {
+            $errors["username_taken"] = "Username already taken!";
+        } elseif (is_email_registered($pdo, $email)) {
+            $errors["email_used"] = "Email already registered";
         }
-    } else {
-        header("index.php");
-        die();
 
-        // Validate password
+        // Password validation
         if (strlen($password) < 8) {
-            die("Password must be at least 8 characters long.");
+            $errors["password_length"] = "Password must be at least 8 characters long.";
         }
-
-        // Check for at least one uppercase letter
         if (!preg_match("/[A-Z]/", $password)) {
-            die("Password must contain at least one uppercase letter.");
+            $errors["password_uppercase"] = "Password must contain at least one uppercase letter.";
+        }
+        // Add other password checks as necessary
+
+        if ($errors) {
+            $_SESSION["register_errors"] = $errors;
+            $_SESSION["register_data"] = ["username" => $username, "email" => $email];
+            header("Location: index.php");
+            exit();
         }
 
-        // Check for at least one lowercase letter
-        if (!preg_match("/[a-z]/", $password)) {
-            die("Password must contain at least one lowercase letter.");
+        // Create user and handle success or failure
+        $userCreated = create_users($pdo, $password, $username, $email);
+        if ($userCreated) {
+            header("Location: index.php?signup=success");
+        } else {
+            header("Location: index.php?signup=error");
         }
-
-        // Check for at least one numerical digit
-        if (!preg_match("/[0-9]/", $password)) {
-            die("Password must contain at least one numerical digit.");
-        }
-
-        // Check for at least one special character
-        if (!preg_match("/[!@#$%^&*(),.?\":{}|<>]/", $password)) {
-            die("Password must contain at least one special character.");
-        }
-
-        // TODO: Implement email validation
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            die("Invalid email address.");
-        }
-
-        // TODO: Check if username or email is already taken (replace with actual database check)
-        // For example, you might use a database query to check if the username or email already exists
-        $isUsernameTaken = false; // Replace with the actual check
-        $isEmailTaken = false; // Replace with the actual check
-
-        if ($isUsernameTaken) {
-            die("Username is already taken. Please choose another.");
-        }
-
-        if ($isEmailTaken) {
-            die("Email is already taken. Please use another email address.");
-        }
-
-        // Hash the password
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-        // TODO: Store user information securely (e.g., use a database)
-        // For example, you might insert the user data into a database table
-        // with columns like id, firstName, middleName, lastName, userName, email, hashedPassword
-
-        // Display a success message (for demonstration purposes)
-        echo "Sign-up successful! Welcome, $userName!";
+        exit();
     }
 
     // For login
     elseif (isset($_POST["login"])) {
-        // Assuming you have the user's information retrieved from the database
-        $storedUserName = "stored_user_name"; // Replace with the actual stored username
-        $storedHashedPassword = "$2y$10$gFCzflH8GMi6vu/ZhA5PnO5x6lcj6/6HlfUIZcE/Mh5Y3NSI7Cz9u"; // Replace with the actual stored hashed password
-
-        // Collect login form data
-        $loginUserName = $_POST["loginUserName"];
-        $loginPassword = $_POST["loginPassword"];
-
-        // Verify entered password with the stored hashed password
-        if ($loginUserName === $storedUserName && password_verify($loginPassword, $storedHashedPassword)) {
-            // Password is correct
-            echo "Login successful! Welcome back, $loginUserName!";
-        } else {
-            // Password is incorrect
-            echo "Login failed. Invalid username or password.";
-        }
+        // Login logic here
     }
 }
 ?>
