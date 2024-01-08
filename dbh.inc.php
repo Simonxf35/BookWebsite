@@ -13,5 +13,4 @@ try{
     die("Could not connect to database" .$e->getMessage());
 }
 
-
 ?>
