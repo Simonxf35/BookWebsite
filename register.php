@@ -52,8 +52,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("index.phpsignup=success?");
         die();
 
-        $password = null;
-        $stmt = null;
+            $newSessionId = session_create_id();
+            $sessionId = $sessionId . "_" . $result["id"]; 
+            $session_Id = ($sessionId);
+
+            $_SESSION["user_id"] = $result["id"];
+            $_SESSION["user_username"] = htmlspecialchars($result["username"]);
+
+            $_SESSION["last_regeneration"] = time();
+
+            header("Location: http/register.php?login-success")
+            $password = null;
+            $stmt = null;
 
         } catch(PDOException $e){
             die("query failed: " . $e->getMessage());
