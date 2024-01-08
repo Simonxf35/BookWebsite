@@ -9,9 +9,15 @@ function check_register_errors() {
     
         echo "" .$_SESSION["register_data"]["username"]. '">';
 } else {
-    echo ""; 
+    echo "<br>"; 
+
+    foreach ($_SESSION as $error){
+        echo '<p class=error="form-error">' . $error . '</p>';
+
+        echo 
     }
-}
+
+    }
 
 function check_register_errors() {
     if (isset($_SESSION["register_errors"])) {
