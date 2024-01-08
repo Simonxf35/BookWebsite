@@ -13,7 +13,6 @@ def get_db_connection():
     return connection
 
 
-
 @app.route('/books')
 def show_books():
     connection = get_db_connection()
