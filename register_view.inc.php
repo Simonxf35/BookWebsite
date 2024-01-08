@@ -1,37 +1,27 @@
 <?php
 declare(strict_types=1);
 
-function check_register_errors() {
-    // insert HTML code here so that we can display errors
-
-    if (isset($_SESSION["register_data"]["username"] && !isset($_SESSION 
-    ["register_errors"]["userame_taken"]))
-    
-        echo "" .$_SESSION["register_data"]["username"]. '">';
-} else {
-    echo "<br>"; 
-
-    foreach ($_SESSION as $error){
-        echo '<p class=error="form-error">' . $error . '</p>';
-
-        echo 
+function display_register_errors() {
+    // Check for specific registration data errors
+    if (isset($_SESSION["register_data"]["username"]) && !isset($_SESSION["register_errors"]["username_taken"])) {
+        echo htmlspecialchars($_SESSION["register_data"]["username"]);
     }
 
-    }
+    echo "<br>";
 
-function check_register_errors() {
+    // Check for general registration errors
     if (isset($_SESSION["register_errors"])) {
-        $errors = $_SESSION["register_errors"];
-
-        echo "<br>";
-
-        foreach ($errors as $error) {
-            echo "<p class='form-error'>" . $error . "</p>";
+        foreach ($_SESSION["register_errors"] as $error) {
+            echo "<p class='form-error'>" . htmlspecialchars($error) . "</p>";
         }
 
+        // Clear the errors after displaying them
         unset($_SESSION["register_errors"]);
-    } else if (isset($_GET["signup"]) && $_GET["signup"] === "success") {
+    }
 
+    // Check for successful signup
+    if (isset($_GET["signup"]) && $_GET["signup"] === "success") {
+        echo "<p class='form-success'>Registration successful!</p>";
     }
 }
 ?>
