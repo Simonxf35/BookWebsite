@@ -1,8 +1,6 @@
 <?php
 declare(strict_types=1);
 
-
-
 function check_register_errors() {
     // insert HTML code here so that we can display errors
 
