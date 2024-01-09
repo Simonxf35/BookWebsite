@@ -90,8 +90,18 @@ a {
         left: -100%;
         gap: 0;
         flex-direction: column;
-        background-color: 
+        background-color: var(--primary-color);
+        width: 100%;
+        text-align: center;
+        transition: 0,3; 
+    }
 
+    .nav-item{
+        margin: 16px 0;
+    }
+
+    .nav-menu.active{
+        left: 0;
     }
 }
 
