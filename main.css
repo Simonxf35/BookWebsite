@@ -11,3 +11,25 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+header {
+    background-color: #033ec9;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar{
+    min-height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 24px;
+}
+
