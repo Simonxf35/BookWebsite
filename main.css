@@ -1,5 +1,5 @@
 :root {
-    --primary-color: #033ec9;
+    --primary-color: #004cff;
     --secondary-color: #1d253b; /* Example darker shade */
     --max-width: 1200px;
     --primary_text-color: #000000;
@@ -13,7 +13,7 @@
 }
 
 header {
-    background-color: #033ec9;
+    background-color: var(--primary-color);
 }
 
 li {
@@ -33,3 +33,22 @@ a {
     padding: 0px 24px;
 }
 
+.nav-menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+}
+
+.title_text {
+    font-size: 16px;
+
+}
+
+.nav-links{
+    transition: 0.7s ease;
+}
+
+.nav-links:hover{
+    color: var(--primary-color);
+}
