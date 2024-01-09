@@ -17,7 +17,7 @@ header {
 }
 
 li {
-    list-style: none;
+    list-style-type: none;
 }
 
 a {
@@ -38,6 +38,10 @@ a {
     justify-content: space-between;
     align-items: center;
     gap: 60px;
+}
+
+.search-icon{
+    font-size: 16;
 }
 
 .title_text {
