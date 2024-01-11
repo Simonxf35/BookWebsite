@@ -1,6 +1,6 @@
 :root {
-    --primary-color: #004cff;
-    --secondary-color: #1d253b; /* Example darker shade */
+    --primary-color: #000080;
+    --secondary-color: #800020; /* Example darker shade */
     --max-width: 1200px;
     --primary_text-color: #000000;
     --secondary_text-color: #2c3855;
@@ -57,15 +57,21 @@ a {
     color: var(--primary-color);
 }
 
-.hamburger{
+.search-icon{
     display: block;
     width: 25px;
     height: 3px;
-    margin: 5px auto;
+    margin: 20px;
     -webkit-transition: all 0,3 ease-in-out;
     transition:  all 0,3 ease-in-out;
     background-color: #fff;
 }
+
+.search-icon:hover{
+    background-color: var(--secondary-color);
+}
+
+
 
 @media(max-width:768px){
     .hamburger{
@@ -84,10 +90,10 @@ a {
         opacity: 0;
     }
 
-
     .nav-menu{
         position: fixed;
         left: -100%;
+        top: 70px;
         gap: 0;
         flex-direction: column;
         background-color: var(--primary-color);
@@ -98,6 +104,7 @@ a {
 
     .nav-item{
         margin: 16px 0;
+
     }
 
     .nav-menu.active{
@@ -105,54 +112,138 @@ a {
     }
 }
 
+.slider-container{
+    padding: 32px;
+    border-bottom: 20px solid var(--primary-color);
 
+}
 
-/* slideshow*/
-* {box-sizing:border-box}
-.slideshow-container {
-    max-width: 1000px;
+.slider-wrapper{
     position: relative;
-    margin: auto; 
+    max-width: 768px;
+    margin: 0 auto;
+
 }
-/* hide images by default*/
-.mySlides {
-    display: none;
+
+.slider{
+    display: flex;
+    aspect-ratio: 16 / 9;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    box-shadow: - 24px 48px -12px hsla(0, 0%, 0% 0.25);
+    border-radius: 8px;
 }
-/* Buttons*/
-.prev , .next {
-    cursor: pointer;
+
+.slider img{
+    flex: 1 0 100%;
+    scroll-snap-align: start;
+}
+
+.slider nav{
+    display: flex;
+    column-gap: 16px;
     position: absolute;
-    top: 50%;
-    width: auto;
-    margin-top: -22px;
-    padding: 16px;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
-    user-select: none;
-}
-/* Buttons position*/
-.next {
-    right: 0;
-    border-radius: 3px 0 0 3px;
-}
-/* Buttons hover background*/
-.prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.8)
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%)
+    z-index: 1;
 }
 
+.slider-nav a{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #fff ;
+    opacity: 0.75;
+    transition: opacity ease 250ms;
+}
 
+.slider-nav a:hover{
+    opacity: 100%;
+}
 
 
 
 
 /*Main Content*/
 .main-container {
-    max-width: 1200px; /* Maximum width of the container */
-    margin: 0 auto; /* Centering the container */
-    padding: 20px;
+    display: flex;
+    flex-wrap: wrap; /* Wrap items to form a grid-like layout */
+    gap: 10px; /* Space between cards */
+    justify-content: center;
+  }
+  
+  .card {
+    background: #8800ff;
+    display: flex; /* Make each card a flex container */
+    align-items: center; /* Center items vertically */
+    width: calc(40% - 60px); /* Adjust width for 2-column layout, accounting for gap */
+  }
+  
+  .card-image {
+    background-color: #000080;
+    width: 200px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+    background-color: #f0f0f0; /* For visualization */
+    border: 1px solid #ddd;
+  }
+  
+  .content {
+    display: flex; /* Make the content a flex container */
+  flex-direction: column; /* Arrange heading and paragraph vertically */
+  flex-grow: 1; /* Allow the content to take up the remaining space */
+  padding: 10px;
+    
+    
+  }
+  
+
+.content h2, .content p {
+    margin: 0 0 10px; /* Add some margin to the bottom of each element */
+}
+
+.content p {
+    margin: 0;
+    /* Additional styling for paragraph */
+}
+
+.content .text-list {
+    margin-bottom: 20px;
+    margin-left: auto; /* Push the list to the right */
+    margin-right: 50px;
+    padding: 0; /* Reset default padding */
+    list-style: none; /* Optionally remove bullet points */
+}
+
+.content .title-list li{
+    list-style: none;
+
+}
+
+.content .title-list ul li a{
+    list-style: none;
+    font-size: 16px;
+    text-transform: capitalize;
+    font-weight: 300;
+
+}
+
+.content .title-list ul li a:hover{
+    color: var(--secondary-color);
+
+}
+
+/*Main Content*/
+
+.card-image{
+    height: 150px;
+    margin-bottom:15px;
+    background-image:  url(/Image/harrypotter1.jpeg);
+}
+
+.car-1{
+   
 }
 
 .column-text {
@@ -198,8 +289,91 @@ a {
         flex-direction: column; /* Stack columns vertically on smaller screens */
     }
 }
-
-
-
-
 /*Main Content*/
+
+
+
+/*Footer Content*/
+.footer{
+    background-color: var(--primary-color);
+    margin-top: 100px;
+    padding-top: 100px ;
+    padding-bottom: 100px;
+}
+
+.footer-container {
+    max-width: 1170px;
+    background-color: var(--primary-color);
+    margin: auto;
+
+}
+
+.footer-text ul{
+    list-style: none;
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer-column{
+    width: 25%;
+    padding: 0 15px;
+
+}
+
+.footer-column h4{
+    font-size: 18px;
+    color: #fff;
+    text-transform: capitalize; 
+    margin-bottom: 30px;
+    font-weight: 500;
+    position: relative;  
+}
+.footer-column h4::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    background-color: var(--primary-color);
+    height: 2px;
+    box-sizing: border-box;
+    width: 50px;  
+}
+
+.footer-column ul li:not(:last-child){
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a{
+    font-size: 16px;
+    text-transform: capitalize;
+    color: #fff;
+    font-weight: 300;
+    display: block;
+    transition: all 0.3s ease;
+}
+.footer-column ul li a:hover{
+    color: var(--secondary-color);
+    padding-left: 8px;
+}
+
+.footer-column .social-icons a{
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    background-color: rgba(225, 225, 255, 0.2);
+    margin: 0 10px 10px 0;
+    line-height: 40px;
+    border-radius: 50%;
+    color: #fff;
+    transition: all ease 0.5 ease;
+}
+
+.footer-column .social-icons a:hover{
+    color: var(--secondary-color);
+    
+}
+/*Footer Content*/
+
