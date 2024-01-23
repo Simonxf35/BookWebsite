@@ -15,7 +15,17 @@ if ($mysqli->connect_errno) {
 
 // Sample Query Execution
 $query = "SELECT * FROM your_table";
-$results = $mysqli->query($query);
+if ($results = $mysqli->query($query)) {
+    // Processing the results
+    while ($row = $results->fetch_assoc()) {
+        // Do something with each row
+    }
+    // Free result set
+    $results->free();
+} else {
+    // Handle query error
+    echo "Query failed: " . $mysqli->error;
+}
 
 // Closing the Connection
 $mysqli->close();
