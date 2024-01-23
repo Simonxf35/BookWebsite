@@ -17,9 +17,6 @@ if ($mysqli->connect_errno) {
 $query = "SELECT * FROM your_table";
 $results = $mysqli->query($query);
 
-// Handling Query Results
-// ... Your code to handle results ...
-
 // Closing the Connection
 $mysqli->close();
 ?>
