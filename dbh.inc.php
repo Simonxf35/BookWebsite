@@ -11,5 +11,11 @@ try {
 } catch (PDOException $e) {
     die("Could not connect to the database: " . $e->getMessage());
 }
-
 ?>
+
+<?php
+$servername = "localhost";
+$dbUsername = "username";
+$dbPassword = "password";
+$dbName = "database_name";
+
