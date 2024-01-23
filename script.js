@@ -1,16 +1,6 @@
-// Hamburger Menu animation
-const hamburger = document.querySelector(".hamburger");
-const navMenu = document.querySelector(".nav-menu");
-
-hamburger.addEventListener("click", () => {
-     hamburger.classlist.toggle("active")
-     navMenu.classlist.toggle("active")
-})
-
-document.querySelectorAll(".hamburger").forEach(n => n.addEventListener("click", () =>{
-    hamburger.classlist.remove("active");
-    navMenu.classlist.remove("active");
-}))
+var reviewsDiv = document.getElementById('reviews');
+var newReview = `<p><strong>${formData.get('username')}</strong>: ${formData.get('comment')}<br><em>Just now</em></p>`;
+reviewsDiv.innerHTML = newReview + reviewsDiv.innerHTML;
 
 // script.js
 document.addEventListener("DOMContentLoaded", function() {
