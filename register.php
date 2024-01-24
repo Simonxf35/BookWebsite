@@ -1,4 +1,5 @@
 <?php
+require_once "dbh.inc.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Include necessary files
     require_once "dbh.inc.php";  // Update with your actual file name
