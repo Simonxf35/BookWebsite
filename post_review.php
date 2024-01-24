@@ -14,19 +14,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection failed: " . $mysqli->connect_error);
     }
 
+    // Assuming BookID and UserID are retrieved from a form or session
+    $bookId = $_POST['bookId']; // or $_SESSION['bookId'], etc.
+    $userId = $_POST['userId']; // or $_SESSION['userId'], etc.
+    $rating = $_POST['rating'];
+
     // Get user input from form
-    $username = $mysqli->real_escape_string($_POST['username']);
     $comment = $mysqli->real_escape_string($_POST['comment']);
 
-    // SQL query to insert data
-    $sql = "INSERT INTO reviews (username, comment) VALUES ('$username', '$comment')";
+    // SQL query to insert data using prepared statements
+    $stmt = $mysqli->prepare("INSERT INTO Review (BookID, UserID, Rating, Comment, ReviewDate) VALUES (?, ?, ?, ?, NOW())");
+    $stmt->bind_param("iiis", $bookId, $userId, $rating, $comment);
 
-    if ($mysqli->query($sql) === TRUE) {
+    if ($stmt->execute()) {
         echo "Review posted successfully";
     } else {
-        echo "Error: " . $sql . "<br>" . $mysqli->error;
+        echo "Error: " . $stmt->error;
     }
 
+    $stmt->close();
     $mysqli->close();
 }
 ?>
