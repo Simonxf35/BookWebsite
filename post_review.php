@@ -2,9 +2,9 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Database configuration
     $dbHost = "localhost";
-    $dbUser = "username";
-    $dbPass = "password";
-    $dbName = "database_name";
+    $dbUser = "root";
+    $dbPass = "";
+    $dbName = "lms1";
 
     // Create connection
     $mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbName);

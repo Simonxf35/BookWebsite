@@ -10,10 +10,10 @@ function isUserAuthenticated() {
 // Function to read and display the contents of a text file from the database
 function viewTextFileFromDatabase($bookId) {
     // Database connection parameters
-    $db_host = 'your_database_host';
-    $db_user = 'your_database_user';
-    $db_pass = 'your_database_password';
-    $db_name = 'your_database_name';
+    $db_host = 'localhost';
+    $db_user = 'root';
+    $db_pass = '';
+    $db_name = 'lms1';
 
     // Check if the user is authenticated
     if (!isUserAuthenticated()) {
