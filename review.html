@@ -90,11 +90,17 @@
             </div>
         </div>
     </div>
-    <form>
-        <div class="form-outline mb-4"><input class="form-control form-control" type="text" id="form4Example1"><label class="form-label form-label" for="form4Example1">Name</label></div>
-        <div class="form-outline mb-4"><input class="form-control form-control" type="email" id="form4Example2"><label class="form-label form-label" for="form4Example2">Email address</label></div>
-        <div class="form-outline mb-4"><textarea class="form-control form-control" id="form4Example3" rows="4"></textarea><label class="form-label form-label" for="form4Example3">Message</label></div>
-        <div class="d-flex justify-content-center form-check mb-4"><input type="checkbox" class="form-check-input me-2" value="" id="form4Example4" checked=""><label class="form-label form-check-label" for="form4Example4"> Send me a copy of this message </label></div><button class="btn btn-primary btn-block mb-4" type="submit"> Send </button>
+    <form method="post" action="submit_review.php"> <!-- Replace with your PHP script -->
+    <!-- Assuming BookID and UserID will be retrieved or set by other means, like session variables -->
+    <div class="form-outline mb-4">
+        <textarea class="form-control" name="comment" id="form4Example3" rows="4"></textarea>
+        <label class="form-label" for="form4Example3">Comment</label>
+    </div>
+    <div class="form-outline mb-4">
+        <input class="form-control" type="number" name="rating" id="rating">
+        <label class="form-label" for="rating">Rating (1-5)</label>
+    </div>
+    <button class="btn btn-primary btn-block mb-4" type="submit">Submit Review</button>
     </form>
     <div class="footer">
         <div class="footer-container">
