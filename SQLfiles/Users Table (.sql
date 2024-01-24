@@ -1,12 +1,12 @@
 CREATE TABLE Users (
     FirstName VARCHAR(100) NOT NULL,
-    middleName VARCHAR(100) NULL,
+    middleName VARCHAR(100),
     lastName VARCHAR(100) NOT NULL,
-    id INT PRIMARY KEY AUTO_INCREMENT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) UNIQUE NOT NULL,
-    emailAddress VARCHAR(50) NOT NULL,
-    comfirmEmail VARCHAR(50) NOT NULL,
-    phone_number INT(50) NULL,
+    emailAddress VARCHAR(255) NOT NULL,
+    confirmEmail VARCHAR(255) NOT NULL,
+    phone_number VARCHAR(50),
     user_password VARCHAR(100) NOT NULL,
-    Interest INT AUTO_INCREMENT NOT NULL PRIMARY KEY
+    Interest INT NOT NULL
 );
