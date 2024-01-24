@@ -10,3 +10,4 @@ CREATE TABLE Users (
     user_password VARCHAR(100) NOT NULL,
     Interest INT NOT NULL
 );
+
