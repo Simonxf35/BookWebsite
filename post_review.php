@@ -14,12 +14,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection failed: " . $mysqli->connect_error);
     }
 
-    // Assuming BookID and UserID are retrieved from a form or session
-    $bookId = $_POST['bookId']; // or $_SESSION['bookId'], etc.
-    $userId = $_POST['userId']; // or $_SESSION['userId'], etc.
-    $rating = $_POST['rating'];
-
-    // Get user input from form
+    // Retrieve form data
+    $bookId = $mysqli->real_escape_string($_POST['bookId']);
+    $userId = $mysqli->real_escape_string($_POST['userId']);
+    $rating = $mysqli->real_escape_string($_POST['rating']);
     $comment = $mysqli->real_escape_string($_POST['comment']);
 
     // SQL query to insert data using prepared statements
