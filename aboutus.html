@@ -26,7 +26,7 @@
 <body>
     <header>
         <nav class="navbar"><a href="#" class="title-text">LuckyBooks</a>
-            <ul class="nav-menu" style="color: rgb(255,255,255);">
+            <ul class="nav-menu" style="color: var(--bs-body-bg);">
                 <li class="nav_items"><a href="#" class="nav-link">Home</a></li>
                 <li class="nav_items"><a href="review.html" class="nav-link">Genres</a></li>
                 <li class="nav_items"><a href="signup.html" class="nav-link">Sign Up</a></li>
@@ -44,19 +44,34 @@
                 <div class="swiper-button-next"></div>
             </div>
         </div>
+        <section class="py-4 py-xl-5">
+            <div class="container h-100" style="border-style: none;border-color: var(--bs-white);">
+                <div class="text-white bg-primary border rounded border-0 p-4 py-5" style="border-style: none;">
+                    <div class="row h-100">
+                        <div class="col-md-10 col-xl-8 text-center d-flex d-sm-flex d-md-flex justify-content-center align-items-center mx-auto justify-content-md-start align-items-md-center justify-content-xl-center">
+                            <div>
+                                <h1 class="text-uppercase fw-bold text-white mb-3">Leave us a review</h1>
+                                <p class="mb-4">Etiam a rutrum, mauris lectus aptent convallis. Fusce vulputate aliquam, sagittis odio metus. Nulla porttitor vivamus viverra laoreet, aliquam netus.</p>
+                                <div></div><button class="btn btn-light fs-5 py-2 px-4" type="button">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </section>
-    <div class="container py-4 py-xl-5">
+    <div class="container py-4 py-xl-5" style="background: var(--bs-body-bg);color: rgb(0,0,0);">
         <div class="row mb-5">
             <div class="col-md-8 col-xl-6 text-center mx-auto">
-                <h2>Reviews</h2>
+                <h2 style="color: var(--bs-black);">Reviews</h2>
             </div>
         </div>
     </div>
-    <div class="container py-4 py-xl-5">
+    <div class="container py-4 py-xl-5" style="background: var(--bs-body-bg);">
         <div class="row gy-4 row-cols-1 row-cols-sm-2 row-cols-lg-3">
             <div class="col">
                 <div>
-                    <p class="bg-light border-0 border-light border rounded p-4"><span style="background-color: rgb(255, 255, 255);">I love this website it has all my favourite books.</span></p>
+                    <p class="bg-light border rounded border-0 border-light p-4"><span style="background-color: rgb(255, 255, 255);">I love this website it has all my favourite books.</span></p>
                     <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
                         <div>
                             <p class="fw-bold text-primary mb-0">Christian</p>
@@ -67,7 +82,7 @@
             </div>
             <div class="col">
                 <div>
-                    <p class="bg-light border-0 border-light border rounded p-4"><span style="background-color: rgb(255, 255, 255);">It has amazing cultural books, which is something i love.</span></p>
+                    <p class="bg-light border rounded border-0 border-light p-4"><span style="background-color: rgb(255, 255, 255);">It has amazing cultural books, which is something i love.</span></p>
                     <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
                         <div>
                             <p class="fw-bold text-primary mb-0">Jessie</p>
@@ -79,7 +94,7 @@
             </div>
             <div class="col">
                 <div>
-                    <p class="bg-light border-0 border-light border rounded p-4"><span style="background-color: rgb(255, 255, 255);">Noam Chomsky's Who Rules the World is my favourite read.</span></p>
+                    <p class="bg-light border rounded border-0 border-light p-4"><span style="background-color: rgb(255, 255, 255);">Noam Chomsky's Who Rules the World is my favourite read.</span></p>
                     <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png">
                         <div>
                             <p class="fw-bold text-primary mb-0">Jean&nbsp;</p>
@@ -90,12 +105,6 @@
             </div>
         </div>
     </div>
-    <form>
-        <div class="form-outline mb-4"><input class="form-control form-control" type="text" id="form4Example1"><label class="form-label form-label" for="form4Example1">Name</label></div>
-        <div class="form-outline mb-4"><input class="form-control form-control" type="email" id="form4Example2"><label class="form-label form-label" for="form4Example2">Email address</label></div>
-        <div class="form-outline mb-4"><textarea class="form-control form-control" id="form4Example3" rows="4"></textarea><label class="form-label form-label" for="form4Example3">Message</label></div>
-        <div class="d-flex justify-content-center form-check mb-4"><input type="checkbox" class="form-check-input me-2" value="" id="form4Example4" checked=""><label class="form-label form-check-label" for="form4Example4"> Send me a copy of this message </label></div><button class="btn btn-primary btn-block mb-4" type="submit"> Send </button>
-    </form>
     <div class="footer">
         <div class="footer-container">
             <div class="row"><div class="footer-column">
