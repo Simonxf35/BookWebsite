@@ -1,9 +1,10 @@
 <?php
 // Database connection details
-$servername = "your_database_server";
-$username = "your_database_username";
-$password = "your_database_password";
-$dbname = "your_database_name";
+$servername = "localhost";
+$dbname = "lms1";
+$username = "root";
+$password = "";
+
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
