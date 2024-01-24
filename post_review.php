@@ -1,4 +1,5 @@
 <?php
+require_once "dbh.inc.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Database configuration
     $dbHost = "localhost";
