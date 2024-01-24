@@ -4,7 +4,7 @@ CREATE TABLE Review (
     UserID INT NOT NULL,
     Rating INT NOT NULL,
     Comment VARCHAR(500),
-    ReviewDate DATE NOT NULL,
+    ReviewDate DATETIME NOT NULL,
     CONSTRAINT FK_BookID_Review FOREIGN KEY (BookID) REFERENCES Books(BookID),
     CONSTRAINT FK_UserID_Review FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );

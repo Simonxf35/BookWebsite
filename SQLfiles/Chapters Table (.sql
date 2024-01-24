@@ -6,4 +6,4 @@ CREATE TABLE Chapters (
     Content TEXT,
     ReleaseDate DATE,
     CONSTRAINT FK_BookID_Chapters FOREIGN KEY (BookID) REFERENCES Books(BookID)
-);
+);   

@@ -1,9 +1,9 @@
 <?php
 
 $host = 'localhost';
-$dbname = 'websitedatabase';
+$dbname = 'lms1';
 $username = 'root';
-$dbpassword = 'password123'; 
+$dbpassword = ''; 
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $dbpassword);
