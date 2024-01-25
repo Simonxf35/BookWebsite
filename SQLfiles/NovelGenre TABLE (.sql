@@ -1,7 +1,0 @@
-CREATE TABLE NovelGenre (
-    BookID INT NOT NULL,
-    GenreID INT NOT NULL,
-    PRIMARY KEY (BookID, GenreID),
-    CONSTRAINT FK_BookID_NovelGenre FOREIGN KEY (BookID) REFERENCES Books(BookID),
-    CONSTRAINT FK_GenreID_NovelGenre FOREIGN KEY (GenreID) REFERENCES Genres(GenreID)
-);
