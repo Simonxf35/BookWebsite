@@ -4,4 +4,5 @@ CREATE TABLE books (
     author VARCHAR(100),
     file_path VARCHAR(255) NOT NULL,
     uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ALTER TABLE books ADD COLUMN file_path VARCHAR(255);
 );
