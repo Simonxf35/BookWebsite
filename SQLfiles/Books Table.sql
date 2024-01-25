@@ -2,7 +2,7 @@ CREATE TABLE books (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     author VARCHAR(100),
+    genre VARCHAR(100),
     file_path VARCHAR(255) NOT NULL,
     uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    ALTER TABLE books ADD COLUMN file_path VARCHAR(255);
 );
