@@ -3,6 +3,8 @@ CREATE TABLE books (
     title VARCHAR(255) NOT NULL,
     author VARCHAR(100),
     genre VARCHAR(100),
-    file_path VARCHAR(255) NOT NULL,
+    file_data LONGBLOB,
+    file_name VARCHAR(255),
+    file_type VARCHAR(50),
     uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
