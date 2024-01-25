@@ -1,28 +1,38 @@
 <?php
-include 'db_connect.php';
+include 'db_connect.php'; // Include the database connection file
+
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
+    try {
+        $username = test_input($_POST['username']);
+        $email = test_input($_POST['email']);
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new Exception("Invalid email format");
+        }
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
 
-    // Database connection
-    $conn = new mysqli('host', 'username', 'password', 'database_name');
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+        // Prepare and bind
+        $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $username, $email, $password);
+
+        // Execute and check
+        if ($stmt->execute()) {
+            echo "Signup successful!";
+        } else {
+            throw new Exception("Error in signup process.");
+        }
+
+        $stmt->close();
+    } catch (Exception $e) {
+        echo "Signup failed: " . $e->getMessage();
+    } finally {
+        $conn->close();
     }
-
-    $sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $username, $email, $password);
-    $stmt->execute();
-
-    if ($stmt->affected_rows > 0) {
-        echo "Signup successful!";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-    $stmt->close();
-    $conn->close();
 }
 ?>
