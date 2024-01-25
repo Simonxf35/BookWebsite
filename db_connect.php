@@ -1,16 +1,17 @@
 <?php
-// db_connect.php
+$host = 'localhost'; // or your database host
+$user = 'username'; // your database username
+$password = 'password'; // your database password
+$dbname = 'your_database_name'; // your database name
 
-$servername = "your_host";
-$username = "your_username";
-$password = "your_password";
-$dbname = "your_database";
+// Create a new MySQLi instance for the database connection
+$conn = new mysqli($host, $user, $password, $dbname);
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
+// Check the connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
+// Set the character set to utf8mb4 for handling text data
+$conn->set_charset("utf8mb4");
 ?>
