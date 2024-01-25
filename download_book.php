@@ -17,41 +17,32 @@ if (!$bookId) {
     exit;
 }
 
-// Prepare the SQL statement to fetch the file path
-$stmt = $conn->prepare("SELECT file_path FROM books WHERE id = ?");
-$stmt->bind_param("i", $bookId); // 'i' specifies the data type as integer
+// Prepare the SQL statement to fetch the file data
+$stmt = $conn->prepare("SELECT file_data, file_name, file_type FROM books WHERE id = ?");
+$stmt->bind_param("i", $bookId);
 $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    $filePath = $row['file_path'];
+    $fileData = $row['file_data'];
+    $fileName = $row['file_name'];
+    $fileType = $row['file_type'];
 
-    // Security check for the file path
-    if (strpos($filePath, "..") !== false) {
-        die("Invalid file path.");
-    }
-
-    // Construct the full file path
-    $fullPath = '/path/to/your/books/directory/' . $filePath;
-
-    if (file_exists($fullPath)) {
-        // Set headers to download the file
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename="'.basename($fullPath).'"');
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
-        header('Content-Length: ' . filesize($fullPath));
-        flush(); // Flush system output buffer
-        readfile($fullPath);
-        exit;
-    } else {
-        echo "File not found.";
-    }
+    // Set headers to download the file
+    header('Content-Description: File Transfer');
+    header('Content-Type: ' . $fileType);
+    header('Content-Disposition: attachment; filename="' . $fileName . '"');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+    header('Content-Length: ' . strlen($fileData));
+    ob_clean();
+    flush(); // Flush system output buffer
+    echo $fileData;
+    exit;
 } else {
-    echo "Invalid book ID.";
+    echo "File not found.";
 }
 
 $stmt->close();
