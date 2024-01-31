@@ -1,16 +1,22 @@
 <?php
-$host = 'localhost';  // or IP address like '192.168.0.1'
-$user = 'db_user';    // your database username
-$password = 'db_password'; // your database password
-$dbname = 'my_database';  // your database name
+// db_connect.php
 
-// Create connection
-$conn = new mysqli($host, $user, $password, $dbname);
+$servername = "localhost"; // Your server name
+$username = "root"; // Your database username
+$password = ""; // Your database password
+$dbname = "library Space Management System"; // Your database name
 
-// Check connection
+// Create a connection using MySQLi
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check the connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Use $conn to interact with the database
-?>
+// Set the charset to utf8mb4 for Unicode support
+$conn->set_charset("utf8mb4");
+
+// Optionally, you could add more error handling or logging here
+
+// This file ends without closing the PHP tag to avoid accidental output
