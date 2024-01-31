@@ -7,4 +7,4 @@ CREATE TABLE books (
     file_name VARCHAR(255),
     file_type VARCHAR(50),
     uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
